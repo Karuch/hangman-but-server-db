@@ -21,7 +21,25 @@ func main() {
 		}
 	}
 
-	fmt.Println("hello")
+	//if start chosen will execute the following
+
+	var word string = "test"
+	letters_list := strings.Split(word, "")
+	letters_list_blank := make([]string, len(letters_list))
+	copy(letters_list_blank, letters_list)
+	
+	for index, _ := range letters_list_blank {
+		letters_list_blank[index] = "_"
+	}
+
+	fmt.Println(letters_list)
+	fmt.Println(letters_list_blank)
+
+	var guess string
+	fmt.Scan(&guess)
+	if strings.EqualFold(guess, word) {
+		fmt.Println("Correct!")
+	}
 	
 	
 
