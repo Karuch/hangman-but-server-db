@@ -5,17 +5,19 @@ import (
 	"strings"
 )
 
-func input_checker(word string) string {
+func input_checker(word string) (string, bool) {
 	var guess string
 	var possibilities_list = [26]string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
-	
-	if strings.EqualFold(guess, word) {
-		fmt.Println("true word!!!")
-	}
-	
+	var guessed_true bool = false
+
 	guess_loop:
 	for 0 < 1 {
+
 		fmt.Scan(&guess)
+		if strings.EqualFold(guess, word) {
+			guessed_true = true
+			break
+		}
 		guess = strings.ToUpper(guess)
 		var possible_letter bool = false
 		for index, _ := range possibilities_list {
@@ -34,7 +36,7 @@ func input_checker(word string) string {
 			fmt.Printf("`%v` is not a valid character. (english letters only)\n", guess)
 		}
 	}
-	return guess
+	return guess, guessed_true
 }
 
 
@@ -57,7 +59,12 @@ func main() {
 	var word string = "Test"
 
 	//checking if guess input is allowed
-	input_checker(word)
+	var guess string
+	var guessed_true bool
+	guess, guessed_true = input_checker(word)
+	if guessed_true {
+		fmt.Println("TRUE WORD!!!")
+	}
 
 	//initiallize the secret word into list and check the guess against it
 	letters_list := strings.Split(word, "")
