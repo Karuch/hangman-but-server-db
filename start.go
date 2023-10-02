@@ -3,17 +3,31 @@ package main
 import (
 	"fmt"
 	"strings"
+	"bufio"
+	"os"
 )
+
+func scan_input(prompt string) string { //need this to support spaces in go input
+	fmt.Print(prompt)
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Scan() {
+		return scanner.Text()
+	}
+	if err := scanner.Err(); err != nil {
+		return "Error reading input: " + err.Error()
+	}
+	return "" 
+}
 
 func input_checker(word string) (string, bool) {
 	var guess string
-	var possibilities_list = [26]string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+	var possibilities_list = [27]string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
 	var guessed_true bool = false
 
 	guess_loop:
 	for 0 < 1 {
-
 		fmt.Scan(&guess)
+		fmt.Println(guess, "<-")
 		if strings.EqualFold(guess, word) {
 			guessed_true = true
 			break
@@ -56,7 +70,7 @@ func main() {
 	}
 
 	//if start chosen will execute the following
-	var word string = "Test"
+	var word string = "Test next"
 
 	//checking if guess input is allowed
 	var guess string
@@ -81,6 +95,9 @@ func main() {
 		}
 	}
 
+	if guessed_true {
+		fmt.Printf("Success, The word was `%v`!\n", strings.Join(letters_list, ""))
+	}
 	fmt.Println(letters_list)
 	fmt.Println(letters_list_blank)
 }
