@@ -23,6 +23,31 @@ func main() {
 
 	//if start chosen will execute the following
 
+	//checking if guess input is allowed
+	var guess string
+	var possibilities_list = [26]string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+	guess_loop:
+	for iter < 1 {
+		fmt.Scan(&guess)
+		var possible_letter bool = false
+		for index, _ := range possibilities_list {
+			if len(guess) > 1 {
+				fmt.Printf("`%v` is not a valid character (contains more then 1).\n", guess)
+				break
+			} else if strings.EqualFold(guess, possibilities_list[index]) {
+				fmt.Println("yes")
+				possible_letter = true
+				break guess_loop
+			} else {
+				continue
+			}
+		}
+		if !possible_letter {
+			fmt.Printf("`%v` is not a valid character. (english letters only)\n", guess)
+		}
+	}
+
+	//initiallize the secret word into list and check the guess against it
 	var word string = "test"
 	letters_list := strings.Split(word, "")
 	letters_list_blank := make([]string, len(letters_list))
@@ -32,28 +57,7 @@ func main() {
 		letters_list_blank[index] = "_"
 	}
 
+
 	fmt.Println(letters_list)
 	fmt.Println(letters_list_blank)
-
-	var guess string
-	var possibilities_list = [26]string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
-	fmt.Scan(&guess)
-	if strings.EqualFold(guess, word) {
-		fmt.Println("Correct!")
-	}
-	for index, _ := range possibilities_list {
-		if  len(guess) > 1 {
-			fmt.Printf("`%v` is not a valid character (contains more then 1).", guess)
-			break
-		} else if strings.EqualFold(guess, possibilities_list[index]) {
-			fmt.Println("yes")
-			break
-		} else {
-			fmt.Printf("`%v` is not a valid character. (english letters only)", guess)
-			break
-		}
-	}
-	
-
-
 }
