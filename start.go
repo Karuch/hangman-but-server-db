@@ -5,31 +5,16 @@ import (
 	"strings"
 )
 
-
-func main() {
-	var choice string
-	var iter int = 0
-	for iter < 1 {
-		fmt.Println("--Welcome to hangman (CLI Version)--\nto start type `start`\nto quit type `quit`")
-		fmt.Scan(&choice)
-		if strings.EqualFold(choice, "start") {
-			break
-		} else if strings.EqualFold(choice, "quit") {
-			fmt.Println("exit...")
-			return 
-		} else {
-			fmt.Printf("`%v` is wrong option, only `start` or `quit` is available", choice)
-		}
-	}
-
-	//if start chosen will execute the following
-	var word string = "Test"
-
-	//checking if guess input is allowed
+func input_checker(word string) string {
 	var guess string
 	var possibilities_list = [26]string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
+	
+	if strings.EqualFold(guess, word) {
+		fmt.Println("true word!!!")
+	}
+	
 	guess_loop:
-	for iter < 1 {
+	for 0 < 1 {
 		fmt.Scan(&guess)
 		guess = strings.ToUpper(guess)
 		var possible_letter bool = false
@@ -49,6 +34,30 @@ func main() {
 			fmt.Printf("`%v` is not a valid character. (english letters only)\n", guess)
 		}
 	}
+	return guess
+}
+
+
+func main() {
+	var choice string
+	for 0 < 1 {
+		fmt.Println("--Welcome to hangman (CLI Version)--\nto start type `start`\nto quit type `quit`")
+		fmt.Scan(&choice)
+		if strings.EqualFold(choice, "start") {
+			break
+		} else if strings.EqualFold(choice, "quit") {
+			fmt.Println("exit...")
+			return 
+		} else {
+			fmt.Printf("`%v` is wrong option, only `start` or `quit` is available", choice)
+		}
+	}
+
+	//if start chosen will execute the following
+	var word string = "Test"
+
+	//checking if guess input is allowed
+	input_checker(word)
 
 	//initiallize the secret word into list and check the guess against it
 	letters_list := strings.Split(word, "")
