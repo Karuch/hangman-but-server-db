@@ -17,12 +17,12 @@ func input_checker(word string, scanner *bufio.Scanner) (string, bool) {
 	for 0 < 1 {
 		scanner.Scan()
 		guess := scanner.Text()
-		fmt.Println(guess, "<-")
 		if len(guess) > 1 {
 			if !strings.EqualFold(guess, word) {
 				//fmt.Printf("`%v` is incorrect word, try again\n", guess) ***************
-				continue 
+				continue guess_loop
 			} else {
+
 				guessed_true = true
 				break guess_loop
 			}
@@ -49,7 +49,7 @@ func input_checker(word string, scanner *bufio.Scanner) (string, bool) {
 
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	scanner := bufio.NewScanner(os.Stdin) // later will be pass by reference to the input checker
 	for 0 < 1 {
 		fmt.Println("--Welcome to hangman (CLI Version)--\nto start type `start`\nto quit type `quit`")
 		scanner.Scan()
