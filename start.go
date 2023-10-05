@@ -95,7 +95,7 @@ func main() {
 		fmt.Println(letters_list)
 		fmt.Println(letters_list_blank)
 		if !guessed_whole_word {
-			for index, value := range letters_list_blank { //not work as it supposee
+			for index, value := range letters_list_blank { //not work as it suppose
 				if value == "_" {
 					fmt.Println("rrrr") 
 					break 
