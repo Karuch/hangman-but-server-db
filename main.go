@@ -2,10 +2,11 @@ package main
 
 import (
 	//"cli/cli"
-	"cli/cli"
 	"fmt"
+	"cli/cli"
 	"net/http"
 
+	"github.com/buger/jsonparser"
 	"github.com/gin-gonic/gin"
 )
 
@@ -41,14 +42,15 @@ func server(){
 			}
 	
 			// Print the received data
-			data := string(body)
-			println("Received POST request data:", data)
-	
-			// You can process the data here as needed
-	
-			// Send a JSON response
-			fmt.Println(cli.Cli(data))
-			fmt.Println(data)
+			println("Received POST request data:", string(body))
+		
+			client_guess_string, err := jsonparser.GetString(body, "guess")
+			if err != nil {
+				fmt.Println("error: ", err)
+				return
+			}
+			
+			fmt.Println(guessHandler.GuessHandler(client_guess_string))
 			c.JSON(http.StatusOK, gin.H{"message": "POST request received successfully"})
 		})
 	
